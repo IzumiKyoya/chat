@@ -1,0 +1,41 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <script src = "/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+
+function send(){
+  var tex = document.getElementById('id_textBox1');
+  socket.emit('message',{value:tex.value});
+}
+</script>
+</head>
+<body>
+  <h1>Chat room</h1>
+<div class = "massage">
+  <p id = message></p>
+  <form id = 'form'>
+  <input name="textBox1" id="id_textBox1" type="text" value="">
+  <input name="button1" id = "id_button1" type = "button" value = "送信" onclick="send();">
+  </form>
+  <p id="test">初めてのJavaScript勉強中だよ！</p>
+
+</div>
+<script>
+
+  var elem = document.getElementById("test");
+  var socket = io.connect();
+  var text1;
+  socket.emit('message' , {value:'そいっ！'})
+  socket.on('from_server' , function(data){
+    console.log(data.value);
+    elem.innerHTML = data.value;
+  });
+
+</script>
+
+
+</div>
+</body>
+</html>
