@@ -19,23 +19,20 @@ function send(){
   <input name="textBox1" id="id_textBox1" type="text" value="">
   <input name="button1" id = "id_button1" type = "button" value = "送信" onclick="send();">
   </form>
-  <p id="test">初めてのJavaScript勉強中だよ！</p>
+  <p id="test">初めてのNode.js勉強中だよ！</p>
 
 </div>
 <script>
 
   var elem = document.getElementById("test");
   var socket = io.connect();
-  var text1;
-  socket.emit('message' , {value:'そいっ！'})
+  var logu = [];
+  var ida = [];
   socket.on('from_server' , function(data){
-    console.log(data.value);
-    elem.innerHTML = data.value;
+    elem.insertAdjacentHTML('beforeend','<br>'+data.value);
   });
 
 </script>
-
-
 </div>
 </body>
 </html>
