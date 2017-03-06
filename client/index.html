@@ -9,6 +9,15 @@ function send(){
   var tex = document.getElementById('id_textBox1');
   socket.emit('message',{value:tex.value});
 }
+
+  var elem = document.getElementById("test");
+  var socket = io.connect();
+  var logu = [];
+  var ida = [];
+  socket.on('from_server' , function(data){
+    elem.insertAdjacentHTML('beforeend','<br>'+data.value);
+  });
+
 </script>
 </head>
 <body>
@@ -22,17 +31,6 @@ function send(){
   <p id="test">初めてのNode.js勉強中だよ！</p>
 
 </div>
-<script>
-
-  var elem = document.getElementById("test");
-  var socket = io.connect();
-  var logu = [];
-  var ida = [];
-  socket.on('from_server' , function(data){
-    elem.insertAdjacentHTML('beforeend','<br>'+data.value);
-  });
-
-</script>
 </div>
 </body>
 </html>
